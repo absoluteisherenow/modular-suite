@@ -1,5 +1,7 @@
 'use client'
 
+import { useState } from 'react'
+
 const plans = [
   {
     name: 'Creator',
@@ -130,6 +132,37 @@ const faqs = [
 ]
 
 export default function ModularSuiteLandingPage() {
+  const [email, setEmail] = useState('')
+  const [loading, setLoading] = useState(false)
+  const [message, setMessage] = useState('')
+
+  const handleWaitlistSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setLoading(true)
+    setMessage('')
+
+    try {
+      const response = await fetch('/api/waitlist', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      })
+
+      const data = await response.json()
+
+      if (response.ok) {
+        setMessage('✅ You\'re on the waitlist!')
+        setEmail('')
+      } else {
+        setMessage('❌ ' + (data.error || 'Something went wrong'))
+      }
+    } catch (err) {
+      setMessage('❌ Error submitting. Try again.')
+    } finally {
+      setLoading(false)
+    }
+  }
+
   return (
     <div className="min-h-screen bg-[#070706] text-[#f0ebe2] font-mono">
       <style>{`
@@ -361,13 +394,29 @@ export default function ModularSuiteLandingPage() {
             <p className="mx-auto mt-8 max-w-3xl text-[18px] md:text-[24px] leading-[1.9] text-[#8a8780]">
               Built for artists first. Then teams. Then agencies. Early access is for people who want the full operating layer, not another disconnected app.
             </p>
-            <form className="mx-auto mt-12 max-w-3xl">
+            <form onSubmit={handleWaitlistSubmit} className="mx-auto mt-12 max-w-3xl">
               <div className="flex flex-col border border-[#1a1917] bg-[#0b0a09] sm:flex-row">
-                <input type="email" placeholder="your@email.com" className="w-full bg-transparent px-7 py-5 text-[16px] text-[#f0ebe2] outline-none placeholder:text-[#52504c]" />
-                <button type="button" className="border-t border-[#1a1917] bg-[#b08d57] px-8 py-5 text-[12px] uppercase tracking-[0.3em] text-[#070706] sm:border-l sm:border-t-0">
-                  Join →
+                <input 
+                  type="email" 
+                  placeholder="your@email.com" 
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  className="w-full bg-transparent px-7 py-5 text-[16px] text-[#f0ebe2] outline-none placeholder:text-[#52504c]" 
+                />
+                <button 
+                  type="submit" 
+                  disabled={loading}
+                  className="border-t border-[#1a1917] bg-[#b08d57] px-8 py-5 text-[12px] uppercase tracking-[0.3em] text-[#070706] sm:border-l sm:border-t-0 hover:opacity-90 disabled:opacity-50"
+                >
+                  {loading ? 'Joining...' : 'Join →'}
                 </button>
               </div>
+              {message && (
+                <p className="mt-4 text-[14px] tracking-[0.1em] text-center">
+                  {message}
+                </p>
+              )}
               <p className="mt-5 text-[13px] tracking-[0.15em] uppercase text-[#52504c]">
                 Private beta / no payment details needed
               </p>
