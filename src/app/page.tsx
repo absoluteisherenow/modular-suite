@@ -133,33 +133,54 @@ const faqs = [
 
 export default function ModularSuiteLandingPage() {
   const [email, setEmail] = useState('')
-  const [loading, setLoading] = useState(false)
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
   const [message, setMessage] = useState('')
 
   const handleWaitlistSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setLoading(true)
-    setMessage('')
+    
+    if (!email.trim()) {
+      setStatus('error')
+      setMessage('Please enter your email.')
+      return
+    }
 
     try {
-      const response = await fetch('/api/waitlist', {
+      setStatus('loading')
+      setMessage('')
+
+      const res = await fetch(`${process.env.NEXT_PUBLIC_SUPABASE_URL}/rest/v1/waitlist`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email }),
+        headers: {
+          'Content-Type': 'application/json',
+          'apikey': process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+          'Authorization': `Bearer ${process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY}`,
+          'Prefer': 'return=minimal',
+        },
+        body: JSON.stringify({
+          email,
+          source: 'artist-os-landing-page',
+        }),
       })
 
-      const data = await response.json()
-
-      if (response.ok) {
+      if (res.ok) {
+        setStatus('success')
         setMessage('✅ You\'re on the waitlist!')
         setEmail('')
-      } else {
-        setMessage('❌ ' + (data.error || 'Something went wrong'))
+        return
       }
-    } catch (err) {
-      setMessage('❌ Error submitting. Try again.')
-    } finally {
-      setLoading(false)
+
+      if (res.status === 409) {
+        setStatus('success')
+        setMessage('✅ You\'re already on the list.')
+        return
+      }
+
+      setStatus('error')
+      setMessage('❌ Something went wrong. Please try again.')
+    } catch {
+      setStatus('error')
+      setMessage('❌ Something went wrong. Please try again.')
     }
   }
 
@@ -401,19 +422,19 @@ export default function ModularSuiteLandingPage() {
                   placeholder="your@email.com" 
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  required
-                  className="w-full bg-transparent px-7 py-5 text-[16px] text-[#f0ebe2] outline-none placeholder:text-[#52504c]" 
+                  disabled={status === 'loading'}
+                  className="w-full bg-transparent px-7 py-5 text-[16px] text-[#f0ebe2] outline-none placeholder:text-[#52504c] disabled:opacity-50" 
                 />
                 <button 
                   type="submit" 
-                  disabled={loading}
-                  className="border-t border-[#1a1917] bg-[#b08d57] px-8 py-5 text-[12px] uppercase tracking-[0.3em] text-[#070706] sm:border-l sm:border-t-0 hover:opacity-90 disabled:opacity-50"
+                  disabled={status === 'loading'}
+                  className="border-t border-[#1a1917] bg-[#b08d57] px-8 py-5 text-[12px] uppercase tracking-[0.3em] text-[#070706] sm:border-l sm:border-t-0 hover:opacity-90 disabled:opacity-50 transition-opacity"
                 >
-                  {loading ? 'Joining...' : 'Join →'}
+                  {status === 'loading' ? 'Joining...' : 'Join →'}
                 </button>
               </div>
               {message && (
-                <p className="mt-4 text-[14px] tracking-[0.1em] text-center">
+                <p className={`mt-4 text-[14px] tracking-[0.1em] text-center ${status === 'success' ? 'text-[#3d6b4a]' : 'text-[#d97706]'}`}>
                   {message}
                 </p>
               )}
