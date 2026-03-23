@@ -1,7 +1,7 @@
 {
-  "name": "signal-lab-dashboard",
+  "name": "modular-suite",
   "version": "1.0.0",
-  "description": "Signal Lab Dashboard - Night Manoeuvres Edition",
+  "description": "Modular Suite Sales Landing Page - Artist OS by Night Manoeuvres",
   "private": true,
   "scripts": {
     "dev": "next dev",
