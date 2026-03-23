@@ -187,7 +187,7 @@ export default function ModularSuiteLandingPage() {
       <main>
         {/* HERO */}
         <section className="border-b border-[#1a1917]">
-          <div className="mx-auto max-w-7xl px-6 py-24 md:py-32">
+          <div className="mx-auto max-w-7xl px-6 py-12 md:py-16">
             <div className="max-w-6xl">
               <div className="flex items-center gap-4 text-[#b08d57] text-[11px] tracking-[0.35em] uppercase mb-8">
                 <span className="block h-px w-12 bg-[#b08d57]" />
