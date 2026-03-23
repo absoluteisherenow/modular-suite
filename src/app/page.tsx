@@ -27,7 +27,7 @@ const plans = [
     tagline: "You're touring. The system runs the business around the music.",
     accent: 'text-[#b08d57]',
     featured: true,
-    button: 'Start Artist plan',
+    button: 'Request access',
     features: [
       'Everything in Creator',
       'Unlimited captions',
@@ -48,12 +48,10 @@ const plans = [
     button: 'Talk to us',
     features: [
       'Everything in Artist',
-      'Branded advancing emails',
-      'Custom advance templates',
+      'Roster analytics dashboard',
       'Advanced content scanning',
       'Artist tone intelligence',
       'Sonix stems analysis',
-      'Artist analytics dashboard',
       'Dedicated support channel',
     ],
   },
@@ -65,12 +63,14 @@ const plans = [
     button: 'Book a demo',
     features: [
       'Everything in Pro',
-      'Capped at 10 artist profiles',
       'Multi-user team access',
       'Shared dashboards + permission roles',
-      'Roster analytics',
-      'Artist onboarding portal',
+      'Capped at 10 artist profiles',
+      'Advanced team permissions',
+      'White-label advancing emails',
+      'Custom integrations',
       'Bulk operations + automation',
+      'Account management',
     ],
   },
 ]
@@ -119,7 +119,7 @@ const faqs = [
   },
   {
     q: 'When does team access start?',
-    a: 'At Management. Creator, Artist, and Pro stay single-user to keep the upgrade path clean and focused on the solo artist use case.',
+    a: 'Team access starts at the Management tier. Creator, Artist, and Pro are intentionally single-user to keep the system focused on the artist workflow.',
   },
   {
     q: 'What is the main commercial argument?',
@@ -200,9 +200,9 @@ export default function ModularSuiteLandingPage() {
           </div>
           <nav className="hidden md:flex items-center gap-8 text-[12px] tracking-[0.2em] uppercase text-[#8a8780]">
             <a href="#labs" className="hover:text-[#f0ebe2]">Labs</a>
-            <a href="#system" className="hover:text-[#f0ebe2]">System</a>
+            <a href="#system" className="hover:text-[#f0ebe2]">Architecture</a>
             <a href="#pricing" className="hover:text-[#f0ebe2]">Pricing</a>
-            <a href="#waitlist" className="hover:text-[#f0ebe2]">Waitlist</a>
+            <a href="#waitlist" className="hover:text-[#f0ebe2]">Early access</a>
           </nav>
         </div>
       </header>
@@ -237,7 +237,7 @@ export default function ModularSuiteLandingPage() {
                 ['System model', '1 core + 4 labs', 'Built to be fully integrated'],
                 ['Main plan', '£59 / month', 'Artist tier'],
                 ['Annual comparison', '£708 vs £3,000', 'At 20 shows / year'],
-                ['Best upgrade gate', 'Team access at Management', 'Not earlier'],
+                ['Best upgrade gate', 'Team access at Pro', 'Not earlier'],
               ].map(([label, value, sub]) => (
                 <div key={label} className="bg-[#0b0a09] p-8">
                   <div className="text-[11px] uppercase tracking-[0.28em] text-[#52504c]">{label}</div>
