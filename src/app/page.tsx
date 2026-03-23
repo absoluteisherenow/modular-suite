@@ -75,29 +75,6 @@ const plans = [
   },
 ]
 
-const labs = [
-  {
-    name: 'Signal Lab',
-    role: 'Touring operations',
-    text: 'Advancing, invoicing, contracts, logistics briefs, expenses, and live show pages that keep the whole team aligned.',
-  },
-  {
-    name: 'Broadcast Lab',
-    role: 'Audience engine',
-    text: 'Tone-matched captions, media scanning, reference artist analysis, scheduling support, and content intelligence that feels native to the artist.',
-  },
-  {
-    name: 'Sonix Lab',
-    role: 'Production intelligence',
-    text: 'Mix chains, arrangement support, track analysis, stems insights, and Max for Live depth for artists who want tools that actually speed up the work.',
-  },
-  {
-    name: 'SetLab',
-    role: 'DJ intelligence',
-    text: 'Set building, energy arcs, harmonic flow, transition analysis, and narrative mapping designed to support craft without advertising the technology behind it.',
-  },
-]
-
 const integrations = [
   'Every lab feeds one shared artist system',
   'Shows inform content timing and posting',
@@ -165,7 +142,7 @@ export default function ModularSuiteLandingPage() {
 
       if (res.ok) {
         setStatus('success')
-        setMessage('✅ You\'re on the waitlist!')
+        setMessage('✅ You\'re on the early access list!')
         setEmail('')
         return
       }
@@ -227,7 +204,7 @@ export default function ModularSuiteLandingPage() {
                   See pricing
                 </a>
                 <a href="#waitlist" className="border border-[#1a1917] px-8 py-4 text-[13px] uppercase tracking-[0.28em] text-[#f0ebe2] hover:border-[#b08d57] hover:text-[#b08d57]">
-                  Join waitlist
+                  Request early access
                 </a>
               </div>
             </div>
@@ -248,7 +225,7 @@ export default function ModularSuiteLandingPage() {
             </div>
 
             <div className="mt-16 border border-[#1a1917] bg-[#0b0a09] p-8 md:p-12">
-              <div className="text-[11px] uppercase tracking-[0.35em] text-[#b08d57]">5-second system view</div>
+              <div className="text-[11px] uppercase tracking-[0.35em] text-[#b08d57]">System architecture</div>
               <div className="mt-8 overflow-x-auto">
                 <div className="min-w-[900px]">
                   <div className="flex justify-center">
@@ -325,24 +302,33 @@ export default function ModularSuiteLandingPage() {
 
         {/* LABS */}
         <section id="labs" className="border-b border-[#1a1917]">
-          <div className="mx-auto max-w-7xl px-6 py-24 md:py-28">
-            <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
-              <div>
-                <div className="text-[11px] uppercase tracking-[0.35em] text-[#b08d57]">The four labs</div>
-                <h2 className="display-font mt-6 text-[42px] md:text-[74px] font-[200] leading-[1.02] tracking-[-0.04em] max-w-4xl">
-                  Capabilities inside the system.
-                </h2>
-              </div>
-              <p className="max-w-xl text-[16px] md:text-[18px] leading-[1.8] text-[#8a8780]">
-                Every plan gets the full architecture. Higher tiers unlock more depth, more operational control, and more workflow intelligence.
+          <div className="mx-auto max-w-7xl px-6 py-24 md:py-32">
+            <div className="max-w-5xl">
+              <div className="text-[11px] uppercase tracking-[0.35em] text-[#b08d57]">Labs</div>
+              <h2 className="display-font mt-6 text-[46px] md:text-[88px] font-[200] leading-[0.96] tracking-[-0.05em] text-[#f0ebe2]">
+                Capabilities
+              </h2>
+              <p className="mt-8 max-w-3xl text-[18px] md:text-[24px] leading-[1.9] text-[#8a8780]">
+                Four connected layers inside Artist OS.
               </p>
             </div>
-            <div className="mt-16 grid gap-px border border-[#1a1917] bg-[#1a1917] md:grid-cols-2">
-              {labs.map((lab) => (
-                <div key={lab.name} className="bg-[#0b0a09] p-10 md:p-12 min-h-[280px]">
-                  <div className="text-[11px] uppercase tracking-[0.28em] text-[#52504c]">{lab.role}</div>
-                  <h3 className="display-font mt-4 text-[34px] font-[200] tracking-[-0.03em]">{lab.name}</h3>
-                  <p className="mt-8 max-w-xl text-[17px] leading-[1.9] text-[#8a8780]">{lab.text}</p>
+            <div className="mt-16 border border-[#1a1917] bg-[#0b0a09]">
+              {[
+                ['Signal Lab', 'touring operations'],
+                ['Broadcast Lab', 'audience engine'],
+                ['Sonix Lab', 'production intelligence'],
+                ['SetLab', 'DJ intelligence'],
+              ].map(([name, role]) => (
+                <div
+                  key={name}
+                  className="grid gap-4 border-b border-[#1a1917] px-8 py-8 last:border-b-0 md:grid-cols-[1.1fr_0.9fr] md:px-12 md:py-10"
+                >
+                  <div className="display-font text-[30px] md:text-[44px] font-[200] tracking-[-0.04em] text-[#f0ebe2]">
+                    {name}
+                  </div>
+                  <div className="flex items-center text-[14px] md:text-[18px] uppercase tracking-[0.24em] text-[#8a8780] md:justify-end">
+                    {role}
+                  </div>
                 </div>
               ))}
             </div>
@@ -355,10 +341,10 @@ export default function ModularSuiteLandingPage() {
             <div className="text-center">
               <div className="text-[11px] uppercase tracking-[0.35em] text-[#b08d57]">Pricing structure</div>
               <h2 className="display-font mt-6 text-[40px] md:text-[74px] font-[200] leading-[1.05] tracking-[-0.04em]">
-                A clean ladder from solo artist to full operation.
+                One system. Four tiers.
               </h2>
               <p className="mx-auto mt-8 max-w-4xl text-[18px] md:text-[24px] leading-[1.9] text-[#8a8780]">
-                Creator, Artist, and Pro stay single-user. Team access starts at Management. Artist is the power middle plan and the clearest commercial choice for touring acts.
+                Creator, Artist, and Pro stay single-user. Management is the first team tier. Artist is the power middle plan and the clearest commercial choice for touring acts.
               </p>
             </div>
             <div className="mt-16 grid gap-px border border-[#1a1917] bg-[#1a1917] lg:grid-cols-4">
@@ -368,7 +354,7 @@ export default function ModularSuiteLandingPage() {
                     <div className="text-[11px] uppercase tracking-[0.28em] text-[#52504c]">{plan.name}</div>
                     {plan.featured && (
                       <div className="border border-[#3a2e1f] px-3 py-2 text-[10px] uppercase tracking-[0.28em] text-[#b08d57]">
-                        Most popular
+                        Most artists choose this
                       </div>
                     )}
                   </div>
@@ -383,17 +369,33 @@ export default function ModularSuiteLandingPage() {
                       </li>
                     ))}
                   </ul>
-                  <button className={`mt-8 border px-5 py-4 text-[11px] uppercase tracking-[0.28em] ${plan.featured ? 'border-[#b08d57] bg-[#b08d57] text-[#070706]' : 'border-[#1a1917] text-[#f0ebe2] hover:border-[#b08d57] hover:text-[#b08d57]'}`}>
-                    {plan.button}
-                  </button>
+                  {plan.name === 'Management' ? (
+                    <a
+                      href="mailto:advancingabsolute@gmail.com?subject=Management%20Demo"
+                      className={`mt-8 border px-5 py-4 text-[11px] uppercase tracking-[0.28em] text-center ${
+                        plan.featured ? 'border-[#b08d57] bg-[#b08d57] text-[#070706]' : 'border-[#1a1917] text-[#f0ebe2] hover:border-[#b08d57] hover:text-[#b08d57]'
+                      }`}
+                    >
+                      Book demo
+                    </a>
+                  ) : (
+                    <a
+                      href="#waitlist"
+                      className={`mt-8 border px-5 py-4 text-[11px] uppercase tracking-[0.28em] text-center ${
+                        plan.featured ? 'border-[#b08d57] bg-[#b08d57] text-[#070706]' : 'border-[#1a1917] text-[#f0ebe2] hover:border-[#b08d57] hover:text-[#b08d57]'
+                      }`}
+                    >
+                      Talk to us
+                    </a>
+                  )}
                 </div>
               ))}
             </div>
             <div className="mt-16 grid gap-px border border-[#1a1917] bg-[#1a1917] md:grid-cols-3">
               {[
-                ['Traditional advancing', '£150 / show', '20 shows ≈ £3,000 / year'],
-                ['Artist tier', '£59 / month', '£708 / year (most popular)'],
-                ['Indicative saving', '£2,292', 'Before content and workflow gains'],
+                ['Traditional advancing', '£150 per show', '20 shows ≈ £3,000 / year'],
+                ['Artist OS', '£59 per month', '£708 / year (most popular)'],
+                ['Typical touring artist saving', '≈ £2,292', 'Before content and workflow gains'],
               ].map(([label, value, sub]) => (
                 <div key={label} className="bg-[#0b0a09] p-8 text-center">
                   <div className="text-[11px] uppercase tracking-[0.28em] text-[#52504c]">{label}</div>
@@ -410,27 +412,27 @@ export default function ModularSuiteLandingPage() {
           <div className="mx-auto max-w-5xl px-6 py-24 md:py-32 text-center">
             <div className="text-[11px] uppercase tracking-[0.35em] text-[#b08d57]">Private beta</div>
             <h2 className="display-font mt-6 text-[42px] md:text-[82px] font-[200] leading-[1.02] tracking-[-0.05em]">
-              Join the waitlist.
+              Request early access.
             </h2>
             <p className="mx-auto mt-8 max-w-3xl text-[18px] md:text-[24px] leading-[1.9] text-[#8a8780]">
-              Built for artists first. Then teams. Then agencies. Early access is for people who want the full operating layer, not another disconnected app.
+              Built for artists first, then management teams. Early access is for people who want the full operating layer, not another disconnected app.
             </p>
             <form onSubmit={handleWaitlistSubmit} className="mx-auto mt-12 max-w-3xl">
               <div className="flex flex-col border border-[#1a1917] bg-[#0b0a09] sm:flex-row">
-                <input 
-                  type="email" 
-                  placeholder="your@email.com" 
+                <input
+                  type="email"
+                  placeholder="your@email.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   disabled={status === 'loading'}
-                  className="w-full bg-transparent px-7 py-5 text-[16px] text-[#f0ebe2] outline-none placeholder:text-[#52504c] disabled:opacity-50" 
+                  className="w-full bg-transparent px-7 py-5 text-[16px] text-[#f0ebe2] outline-none placeholder:text-[#52504c] disabled:opacity-50"
                 />
-                <button 
-                  type="submit" 
+                <button
+                  type="submit"
                   disabled={status === 'loading'}
-                  className="border-t border-[#1a1917] bg-[#b08d57] px-8 py-5 text-[12px] uppercase tracking-[0.3em] text-[#070706] sm:border-l sm:border-t-0 hover:opacity-90 disabled:opacity-50 transition-opacity"
+                  className="border-t border-[#1a1917] bg-[#b08d57] px-8 py-5 text-[12px] uppercase tracking-[0.3em] text-[#070706] sm:border-l sm:border-t-0 disabled:opacity-50 transition-opacity"
                 >
-                  {status === 'loading' ? 'Joining...' : 'Join →'}
+                  {status === 'loading' ? 'Requesting...' : 'Request access →'}
                 </button>
               </div>
               {message && (
