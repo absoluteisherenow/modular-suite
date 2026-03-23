@@ -142,14 +142,14 @@ export default function ModularSuiteLandingPage() {
 
       if (res.ok) {
         setStatus('success')
-        setMessage('✅ You\'re on the early access list!')
+        setMessage('✅ You\'re on the waitlist!')
         setEmail('')
         return
       }
 
       if (res.status === 409) {
         setStatus('success')
-        setMessage('✅ You\'re already on the list.')
+        setMessage('✅ You\'re already on the waitlist.')
         return
       }
 
@@ -179,7 +179,7 @@ export default function ModularSuiteLandingPage() {
             <a href="#labs" className="hover:text-[#f0ebe2]">Labs</a>
             <a href="#system" className="hover:text-[#f0ebe2]">Architecture</a>
             <a href="#pricing" className="hover:text-[#f0ebe2]">Pricing</a>
-            <a href="#waitlist" className="hover:text-[#f0ebe2]">Early access</a>
+            <a href="#waitlist" className="hover:text-[#f0ebe2]">Waitlist</a>
           </nav>
         </div>
       </header>
@@ -204,7 +204,7 @@ export default function ModularSuiteLandingPage() {
                   See pricing
                 </a>
                 <a href="#waitlist" className="border border-[#1a1917] px-8 py-4 text-[13px] uppercase tracking-[0.28em] text-[#f0ebe2] hover:border-[#b08d57] hover:text-[#b08d57]">
-                  Request early access
+                  Join waitlist
                 </a>
               </div>
             </div>
@@ -214,7 +214,7 @@ export default function ModularSuiteLandingPage() {
                 ['System model', '1 core + 4 labs', 'Built to be fully integrated'],
                 ['Main plan', '£59 / month', 'Artist tier'],
                 ['Annual comparison', '£708 vs £3,000', 'At 20 shows / year'],
-                ['Best upgrade gate', 'Team access at Pro', 'Not earlier'],
+                ['Best upgrade gate', 'Team access at Management', 'Not earlier'],
               ].map(([label, value, sub]) => (
                 <div key={label} className="bg-[#0b0a09] p-8">
                   <div className="text-[11px] uppercase tracking-[0.28em] text-[#52504c]">{label}</div>
@@ -412,10 +412,10 @@ export default function ModularSuiteLandingPage() {
           <div className="mx-auto max-w-5xl px-6 py-24 md:py-32 text-center">
             <div className="text-[11px] uppercase tracking-[0.35em] text-[#b08d57]">Private beta</div>
             <h2 className="display-font mt-6 text-[42px] md:text-[82px] font-[200] leading-[1.02] tracking-[-0.05em]">
-              Request early access.
+              Join the waitlist.
             </h2>
             <p className="mx-auto mt-8 max-w-3xl text-[18px] md:text-[24px] leading-[1.9] text-[#8a8780]">
-              Built for artists first, then management teams. Early access is for people who want the full operating layer, not another disconnected app.
+              Built for artists first. Then teams. Then agencies. Early access is for people who want the full operating layer, not another disconnected app.
             </p>
             <form onSubmit={handleWaitlistSubmit} className="mx-auto mt-12 max-w-3xl">
               <div className="flex flex-col border border-[#1a1917] bg-[#0b0a09] sm:flex-row">
@@ -432,7 +432,7 @@ export default function ModularSuiteLandingPage() {
                   disabled={status === 'loading'}
                   className="border-t border-[#1a1917] bg-[#b08d57] px-8 py-5 text-[12px] uppercase tracking-[0.3em] text-[#070706] sm:border-l sm:border-t-0 disabled:opacity-50 transition-opacity"
                 >
-                  {status === 'loading' ? 'Requesting...' : 'Request access →'}
+                  {status === 'loading' ? 'Joining...' : 'Join →'}
                 </button>
               </div>
               {message && (
