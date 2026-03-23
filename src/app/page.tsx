@@ -200,10 +200,10 @@ export default function ModularSuiteLandingPage() {
                 Artist OS brings Signal Lab, Broadcast Lab, Sonix Lab, and SetLab into one connected layer so artists can run touring, releases, content, and DJ workflow from a single operating layer without context switching.
               </p>
               <div className="mt-12 flex flex-col gap-4 sm:flex-row">
-                <a href="#pricing" className="border border-[#b08d57] bg-[#b08d57] px-8 py-4 text-[13px] uppercase tracking-[0.28em] text-[#070706] transition hover:opacity-90">
+                <a href="#pricing" className="border border-[#1a1917] px-8 py-4 text-[13px] uppercase tracking-[0.28em] text-[#f0ebe2] hover:border-[#b08d57] hover:text-[#b08d57]">
                   See pricing
                 </a>
-                <a href="#waitlist" className="border border-[#1a1917] px-8 py-4 text-[13px] uppercase tracking-[0.28em] text-[#f0ebe2] hover:border-[#b08d57] hover:text-[#b08d57]">
+                <a href="#waitlist" className="border border-[#b08d57] bg-[#b08d57] px-8 py-4 text-[13px] uppercase tracking-[0.28em] text-[#070706] transition hover:opacity-90">
                   Join waitlist
                 </a>
               </div>
