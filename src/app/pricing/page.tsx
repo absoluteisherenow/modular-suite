@@ -62,7 +62,6 @@ const TIERS = [
       'Producer chain database',
       'Audio file analysis (BPM, key, energy)',
       'Stems analysis',
-      'API access & webhooks',
       'Dedicated support',
     ],
   },
