@@ -11,12 +11,12 @@ const plans = [
     button: 'Join waitlist',
     features: [
       'Tour Lab — unlimited gigs + advancing',
-      'Signal Lab — 30 AI captions / month',
+      'Broadcast Lab — 30 captions / month',
       'Artist tone profile + trend detection',
       'Set Lab — unlimited set building',
       'Camelot wheel + energy scoring',
       'SONIX Lab — 18 mix chain presets',
-      'Arrangement intelligence',
+      'Drop Lab — release management',
       'Email support',
     ],
   },
@@ -29,20 +29,21 @@ const plans = [
     button: 'Join waitlist',
     features: [
       'Everything in Creator',
-      'Unlimited AI captions + scheduling',
-      'Content intelligence scanner',
+      'Unlimited captions + scheduling',
+      'Content scanner',
       'Contract parser — paste email, auto-fills gig',
       'Invoice tracking + CSV export',
       'SONIX Lab VST plugin (AU + VST3)',
       'Rekordbox import + export',
-      'Track intelligence — energy, flow, mix tips',
+      'Track intelligence — energy, flow, compatibility',
+      'Drop Lab — campaign builder + timeline',
       'Priority support',
     ],
   },
   {
     name: 'Pro',
     price: '£99',
-    tagline: "Full creative control. Every tool, no limits.",
+    tagline: "Every tool. No limits.",
     accent: 'text-[#6a7a9a]',
     button: 'Join waitlist',
     features: [
@@ -50,42 +51,28 @@ const plans = [
       'Advanced content scoring',
       'Producer chain database',
       'Audio file analysis (BPM, key, energy)',
+      'Mix Scanner — full tracklist detection',
       'Stems analysis',
       'Dedicated support',
-    ],
-  },
-  {
-    name: 'Management',
-    price: '£249',
-    tagline: "You're running artists. One dashboard for the roster.",
-    accent: 'text-[#3d6b4a]',
-    button: 'Book a demo',
-    features: [
-      'Everything in Pro',
-      'Multi-artist dashboard',
-      'Team access + permissions',
-      'Up to 10 artist profiles',
-      'White-label advance emails',
-      'Bulk operations',
-      'Account manager',
     ],
   },
 ]
 
 const labs = [
-  { name: 'Tour Lab', role: 'Gigs, contracts, finances, advancing', color: '#b08d57', action: 'Run the business' },
-  { name: 'Signal Lab', role: 'AI captions, scheduling, media scanning', color: '#3d6b4a', action: 'Own the narrative' },
-  { name: 'SONIX Lab', role: 'Mix chains, arrangement, production intelligence', color: '#6a7a9a', action: 'Make the music' },
-  { name: 'Set Lab', role: 'Track library, set building, Rekordbox sync', color: '#9a6a5a', action: 'Prepare the set' },
+  { name: 'Tour Lab', role: 'Gigs, contracts, finances, advancing. The business side — handled.', color: '#b08d57', action: 'Run the business' },
+  { name: 'Broadcast Lab', role: 'Content intelligence, captions tuned to your voice, scheduling, trend detection, media scanning.', color: '#3d6b4a', action: 'Own the narrative' },
+  { name: 'Set Lab', role: 'Track library, set building, mix scanner, Rekordbox sync, energy + flow scoring.', color: '#9a6a5a', action: 'Prepare the set' },
+  { name: 'SONIX Lab', role: 'Mix chain analysis, production workflow, frequency and structure data, VST plugin.', color: '#6a7a9a', action: 'Production analysis' },
+  { name: 'Drop Lab', role: 'Release management, campaign timelines, streaming links, promo coordination.', color: '#7a5a8a', action: 'Ship the music' },
 ]
 
 const features = [
-  { title: 'Contract parser', desc: 'Paste a booking email. AI extracts venue, times, hotel, backline, fee, deposits — creates the gig in one click.' },
-  { title: 'Content intelligence', desc: 'Drop a show clip. AI finds the best 15 seconds, scores engagement potential, suggests platform-specific cuts.' },
-  { title: 'Track intelligence', desc: 'Every track gets energy scoring, mix-in techniques, crowd reaction predictions, and flow compatibility with your library.' },
-  { title: 'Tone profiles', desc: 'Scan your favourite artists\' posting styles. AI learns the voice and generates captions that sound like you, not a brand.' },
-  { title: 'Rekordbox sync', desc: 'Import your full Rekordbox library. AI enriches every track. Export sets back as Rekordbox XML playlists.' },
-  { title: 'SONIX Lab VST', desc: 'A plugin that lives in Ableton. Scans your plugins, recommends mix chains, copies settings to clipboard. D16-style hardware UI.' },
+  { title: 'Contract parser', desc: 'Paste a booking email. Intelligent extraction pulls venue, times, hotel, backline, fee, deposits — creates the gig in one click.' },
+  { title: 'Content intelligence', desc: 'Drop a show clip. Intelligent analysis finds the best 15 seconds, scores engagement potential, suggests platform-specific cuts.' },
+  { title: 'Track intelligence', desc: 'Every track gets energy scoring, flow compatibility analysis, and mix-in data mapped against your full library.' },
+  { title: 'Mix Scanner', desc: 'Upload a recorded DJ mix. Automatic track detection, transition analysis, energy arc breakdown, and flow scoring out of 10.' },
+  { title: 'Tone profiles', desc: 'Scan your favourite artists\' posting styles. Intelligent tone matching learns the voice and generates captions that sound like you, not a brand.' },
+  { title: 'Rekordbox sync', desc: 'Import your full Rekordbox library. Intelligent enrichment scores every track. Export sets back as Rekordbox XML playlists.' },
 ]
 
 const faqs = [
@@ -95,7 +82,7 @@ const faqs = [
   },
   {
     q: 'How much does traditional advancing cost?',
-    a: 'A dedicated advancing service runs around £150 per show. At 20 shows a year, that\'s £3,000. Artist OS is £59/month — £708/year — and it does advancing, content, set prep, and production tools.',
+    a: 'A dedicated advancing service runs around £150 per show. At 20 shows a year, that\'s £3,000. Signal Lab OS is £59/month — £708/year — and it does advancing, content intelligence, set prep, and production tools.',
   },
   {
     q: 'Do I need to be a touring DJ to use this?',
@@ -117,33 +104,28 @@ export default function LandingPage() {
     if (!email.trim()) { setStatus('error'); setMessage('Enter your email.'); return }
     try {
       setStatus('loading'); setMessage('')
-      const res = await fetch(`${process.env.NEXT_PUBLIC_SUPABASE_URL}/rest/v1/waitlist`, {
+      const res = await fetch('/api/waitlist', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'apikey': process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-          'Authorization': `Bearer ${process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY}`,
-          'Prefer': 'return=minimal',
-        },
-        body: JSON.stringify({ email, source: 'artist-os-landing' }),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, source: 'signal-lab-os-landing' }),
       })
-      if (res.ok || res.status === 409) { setStatus('success'); setMessage(res.status === 409 ? "You're already on the list." : "You're in. We'll be in touch."); setEmail(''); return }
+      const data = await res.json()
+      if (data.success) { setStatus('success'); setMessage("You're in. We'll be in touch."); setEmail(''); return }
+      if (data.duplicate) { setStatus('success'); setMessage("You're already on the list."); setEmail(''); return }
       setStatus('error'); setMessage('Something went wrong. Try again.')
     } catch { setStatus('error'); setMessage('Something went wrong. Try again.') }
   }
 
   return (
     <div className="min-h-screen bg-[#070706] text-[#f0ebe2] font-mono">
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Unbounded:wght@200;300;400&display=swap');
-        .display-font { font-family: 'Unbounded', sans-serif; }
-        .mono-font { font-family: 'DM Mono', monospace; }
-      `}</style>
 
       {/* HEADER */}
       <header className="border-b border-[#1a1917] sticky top-0 z-30 bg-[#070706]/95 backdrop-blur">
         <div className="mx-auto max-w-7xl px-6 py-5 flex items-center justify-between">
-          <div className="tracking-[0.28em] text-[11px] text-[#b08d57] uppercase">Artist OS</div>
+          <div className="flex items-center gap-3">
+            <span className="display-font text-[13px] font-[200] tracking-[0.04em] text-[#f0ebe2]">Signal Lab</span>
+            <span className="text-[9px] tracking-[0.08em] text-[#52504c]">OS</span>
+          </div>
           <nav className="hidden md:flex items-center gap-8 text-[12px] tracking-[0.18em] uppercase text-[#8a8780]">
             <a href="#labs" className="hover:text-[#f0ebe2] transition-colors">Labs</a>
             <a href="#features" className="hover:text-[#f0ebe2] transition-colors">Features</a>
@@ -163,14 +145,14 @@ export default function LandingPage() {
                 <span>Private beta — join the waitlist</span>
               </div>
               <h1 className="display-font text-[48px] leading-[0.96] md:text-[100px] md:leading-[0.93] font-[200] tracking-[-0.05em] text-[#f0ebe2] max-w-5xl">
-                Your gigs. Your content. Your music. One system.
+                Your gigs. Your content. Your music. One OS.
               </h1>
               <p className="mt-10 max-w-3xl text-[18px] md:text-[26px] leading-[1.8] text-[#8a8780]">
-                Artist OS replaces the spreadsheets, the WhatsApp threads, the five different apps. Tour management, AI content, production tools, and DJ set prep — connected, intelligent, built for electronic artists.
+                Signal Lab OS replaces the spreadsheets, the WhatsApp threads, the five different apps. Tour management, content scheduling, production analysis, DJ set prep, and release management — one system, built for electronic artists.
               </p>
               <div className="mt-12 flex flex-col gap-4 sm:flex-row">
                 <a href="#waitlist" className="border border-[#b08d57] bg-[#b08d57] px-8 py-4 text-[13px] uppercase tracking-[0.28em] text-[#070706] transition hover:opacity-90 text-center">
-                  Join the waitlist →
+                  Join the waitlist
                 </a>
                 <a href="#labs" className="border border-[#1a1917] px-8 py-4 text-[13px] uppercase tracking-[0.28em] text-[#8a8780] hover:border-[#b08d57] hover:text-[#b08d57] transition-all text-center">
                   See what's inside
@@ -181,13 +163,13 @@ export default function LandingPage() {
             {/* STATS BAR */}
             <div className="mt-20 grid grid-cols-2 gap-px border border-[#1a1917] bg-[#1a1917] md:grid-cols-4">
               {[
-                ['4 labs', 'Tour · Signal · SONIX · Set', 'Fully integrated'],
+                ['5 labs', 'Tour · Broadcast · Set · SONIX · Drop', 'Fully integrated'],
                 ['£59 / month', 'Artist tier', 'Most popular'],
                 ['£2,292 saved', 'vs traditional advancing', 'At 20 shows / year'],
                 ['1 system', 'Replaces 5+ tools', 'No context switching'],
               ].map(([value, label, sub]) => (
                 <div key={value} className="bg-[#0b0a09] p-7 md:p-8">
-                  <div className="text-[28px] md:text-[32px] text-[#f0ebe2]">{value}</div>
+                  <div className="display-font text-[28px] md:text-[32px] font-[200] text-[#f0ebe2]">{value}</div>
                   <div className="mt-3 text-[12px] uppercase tracking-[0.2em] text-[#52504c]">{label}</div>
                   <div className="mt-1 text-[12px] text-[#3d6b4a]">{sub}</div>
                 </div>
@@ -204,15 +186,15 @@ export default function LandingPage() {
               <span>The labs</span>
             </div>
             <h2 className="display-font text-[38px] md:text-[72px] font-[200] leading-[0.98] tracking-[-0.04em] max-w-4xl">
-              Four connected modules. One artist workflow.
+              Five connected labs. One artist workflow.
             </h2>
             <p className="mt-8 max-w-3xl text-[18px] leading-[1.8] text-[#8a8780]">
-              Create music → build sets → play shows → tell the story. Each lab handles one part. Together they form the full creative cycle.
+              Create music. Build sets. Play shows. Tell the story. Ship the release. Each lab handles one part. Together they form the full creative cycle.
             </p>
 
-            <div className="mt-16 grid gap-4 md:grid-cols-2">
+            <div className="mt-16 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
               {labs.map(lab => (
-                <div key={lab.name} className="border border-[#1a1917] bg-[#0b0a09] p-8 md:p-10 flex flex-col">
+                <div key={lab.name} className="border border-[#1a1917] bg-[#0b0a09] p-8 md:p-10 flex flex-col group hover:border-[#2e2c29] transition-colors">
                   <div className="display-font text-[28px] md:text-[36px] font-[200] tracking-[-0.03em]" style={{ color: lab.color }}>{lab.name}</div>
                   <div className="mt-3 text-[14px] leading-[1.8] text-[#8a8780] flex-1">{lab.role}</div>
                   <div className="mt-6 text-[18px] text-[#f0ebe2]">{lab.action}</div>
@@ -226,26 +208,26 @@ export default function LandingPage() {
               <div className="hidden md:block">
                 <div className="flex justify-center">
                   <div className="border border-[#3a2e1f] px-8 py-5 text-center">
-                    <div className="display-font text-[28px] font-[200] text-[#f0ebe2]">Artist OS</div>
+                    <div className="display-font text-[28px] font-[200] text-[#f0ebe2]">Signal Lab OS</div>
                     <div className="mt-2 text-[12px] text-[#8a8780]">The core — everything connects here</div>
                   </div>
                 </div>
                 <div className="mx-auto h-8 w-px bg-[#3a2e1f]" />
-                <div className="mx-auto h-px max-w-[700px] bg-[#3a2e1f]" />
-                <div className="grid grid-cols-4 gap-4 pt-8">
+                <div className="mx-auto h-px max-w-[900px] bg-[#3a2e1f]" />
+                <div className="grid grid-cols-5 gap-4 pt-8">
                   {labs.map(lab => (
                     <div key={lab.name} className="relative text-center">
                       <div className="absolute left-1/2 top-[-32px] h-8 w-px -translate-x-1/2 bg-[#3a2e1f]" />
-                      <div className="border border-[#1a1917] bg-[#070706] px-4 py-5">
-                        <div className="display-font text-[20px] font-[200]" style={{ color: lab.color }}>{lab.name}</div>
-                        <div className="mt-4 text-[14px]" style={{ color: lab.color }}>{lab.action}</div>
+                      <div className="border border-[#1a1917] bg-[#070706] px-3 py-5">
+                        <div className="display-font text-[16px] md:text-[18px] font-[200]" style={{ color: lab.color }}>{lab.name}</div>
+                        <div className="mt-4 text-[12px] md:text-[13px]" style={{ color: lab.color }}>{lab.action}</div>
                       </div>
                     </div>
                   ))}
                 </div>
               </div>
               <p className="mt-8 text-center text-[15px] leading-[1.8] text-[#8a8780] max-w-3xl mx-auto">
-                Your gig data feeds your content calendar. Your set prep connects to your show schedule. Production decisions flow into releases. One system that gets smarter the more you use it.
+                Your gig data feeds your content calendar. Your set prep connects to your show schedule. Production decisions flow into releases. One system — every part of the workflow connected.
               </p>
             </div>
           </div>
@@ -259,11 +241,11 @@ export default function LandingPage() {
               <span>What makes it different</span>
             </div>
             <h2 className="display-font text-[38px] md:text-[72px] font-[200] leading-[0.98] tracking-[-0.04em] max-w-4xl">
-              Intelligence built into every step.
+              Every part of the workflow. Handled.
             </h2>
             <div className="mt-16 grid gap-px border border-[#1a1917] bg-[#1a1917] md:grid-cols-2 lg:grid-cols-3">
               {features.map(f => (
-                <div key={f.title} className="bg-[#0b0a09] p-8">
+                <div key={f.title} className="bg-[#0b0a09] p-8 group">
                   <div className="text-[14px] text-[#b08d57] mb-4">{f.title}</div>
                   <div className="text-[14px] leading-[1.8] text-[#8a8780]">{f.desc}</div>
                 </div>
@@ -281,10 +263,10 @@ export default function LandingPage() {
                 Simple. No surprises.
               </h2>
               <p className="mx-auto mt-6 max-w-3xl text-[18px] leading-[1.8] text-[#8a8780]">
-                Most touring artists choose the Artist tier. If you're just making music, Creator has everything you need. Management is for teams running multiple artists.
+                Most touring artists choose the Artist tier. If you're just making music, Creator has everything you need.
               </p>
             </div>
-            <div className="mt-16 grid gap-px border border-[#1a1917] bg-[#1a1917] lg:grid-cols-4">
+            <div className="mt-16 grid gap-px border border-[#1a1917] bg-[#1a1917] lg:grid-cols-3">
               {plans.map(plan => (
                 <div key={plan.name} className={`${plan.featured ? 'bg-[#11100d]' : 'bg-[#0b0a09]'} p-8 md:p-10 flex flex-col`}>
                   <div className="flex items-center justify-between gap-4">
@@ -295,7 +277,7 @@ export default function LandingPage() {
                       </div>
                     )}
                   </div>
-                  <div className={`mt-5 text-[40px] ${plan.accent}`}>{plan.price}</div>
+                  <div className={`mt-5 display-font text-[40px] font-[200] ${plan.accent}`}>{plan.price}</div>
                   <div className="text-[12px] uppercase tracking-[0.2em] text-[#52504c]">per month</div>
                   <p className="mt-5 text-[14px] leading-[1.8] text-[#8a8780] min-h-[72px]">{plan.tagline}</p>
                   <ul className="mt-5 space-y-3 text-[14px] leading-[1.7] text-[#8a8780] flex-1">
@@ -307,7 +289,7 @@ export default function LandingPage() {
                     ))}
                   </ul>
                   {plan.name === 'Management' ? (
-                    <a href="mailto:hello@artistos.io?subject=Management%20Demo" className="mt-8 border border-[#1a1917] px-5 py-4 text-[11px] uppercase tracking-[0.28em] text-center text-[#f0ebe2] hover:border-[#b08d57] hover:text-[#b08d57] transition-all">
+                    <a href="mailto:hello@signallabos.com?subject=Management%20Demo" className="mt-8 border border-[#1a1917] px-5 py-4 text-[11px] uppercase tracking-[0.28em] text-center text-[#f0ebe2] hover:border-[#b08d57] hover:text-[#b08d57] transition-all">
                       {plan.button}
                     </a>
                   ) : (
@@ -319,16 +301,27 @@ export default function LandingPage() {
               ))}
             </div>
 
+            {/* MANAGEMENT NOTE */}
+            <div className="mt-2 border border-[#1a1917] bg-[#0b0a09] p-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+              <div>
+                <div className="text-[11px] uppercase tracking-[0.22em] text-[#52504c] mb-1">Running artists?</div>
+                <div className="text-[14px] text-[#8a8780] leading-[1.7]">Management tier available — multi-artist dashboard, team access, white-label advance emails. Priced separately.</div>
+              </div>
+              <a href="mailto:hello@signallabos.com?subject=Management%20tier" className="shrink-0 border border-[#1a1917] px-6 py-3 text-[11px] uppercase tracking-[0.22em] text-[#8a8780] hover:border-[#b08d57] hover:text-[#b08d57] transition-all text-center">
+                Get in touch →
+              </a>
+            </div>
+
             {/* SAVINGS COMPARISON */}
             <div className="mt-12 grid gap-px border border-[#1a1917] bg-[#1a1917] md:grid-cols-3">
               {[
-                ['Without Artist OS', '~£3,000 / year', 'Advancing alone at £150/show × 20 shows'],
-                ['With Artist OS', '£708 / year', 'Plus content, production, and set prep tools'],
+                ['Without Signal Lab OS', '~£3,000 / year', 'Advancing alone at £150/show × 20 shows'],
+                ['With Signal Lab OS', '£708 / year', 'Plus content, production, set prep, and release tools'],
                 ['You save', '£2,292+', 'Before content and workflow gains'],
               ].map(([label, value, sub]) => (
                 <div key={label} className="bg-[#0b0a09] p-8 text-center">
                   <div className="text-[11px] uppercase tracking-[0.28em] text-[#52504c]">{label}</div>
-                  <div className="mt-4 text-[32px] text-[#f0ebe2]">{value}</div>
+                  <div className="mt-4 display-font text-[32px] font-[200] text-[#f0ebe2]">{value}</div>
                   <div className="mt-2 text-[13px] text-[#52504c]">{sub}</div>
                 </div>
               ))}
@@ -352,7 +345,7 @@ export default function LandingPage() {
                   className="w-full bg-transparent px-7 py-5 text-[16px] text-[#f0ebe2] outline-none placeholder:text-[#52504c] disabled:opacity-50" />
                 <button type="submit" disabled={status === 'loading'}
                   className="border-t border-[#1a1917] bg-[#b08d57] px-8 py-5 text-[12px] uppercase tracking-[0.3em] text-[#070706] sm:border-l sm:border-t-0 disabled:opacity-50 transition-opacity hover:opacity-90">
-                  {status === 'loading' ? 'Joining...' : 'Join →'}
+                  {status === 'loading' ? 'Joining...' : 'Join'}
                 </button>
               </div>
               {message && (
@@ -382,9 +375,9 @@ export default function LandingPage() {
       {/* FOOTER */}
       <footer className="border-t border-[#1a1917] py-10 px-6">
         <div className="mx-auto max-w-7xl flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="text-[11px] tracking-[0.2em] uppercase text-[#52504c]">Artist OS · Private beta · 2026</div>
+          <div className="text-[11px] tracking-[0.2em] uppercase text-[#52504c]">Signal Lab OS · Private beta · 2026</div>
           <div className="text-[11px] tracking-[0.15em] text-[#52504c]">
-            <a href="mailto:hello@artistos.io" className="hover:text-[#8a8780] transition-colors">hello@artistos.io</a>
+            <a href="mailto:hello@signallabos.com" className="hover:text-[#8a8780] transition-colors">hello@signallabos.com</a>
           </div>
         </div>
       </footer>
