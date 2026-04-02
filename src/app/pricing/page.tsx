@@ -104,7 +104,7 @@ export default function PricingPage() {
       <section style={{ minHeight: '80vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '120px 48px 80px', textAlign: 'center', borderBottom: `1px solid ${COLORS.border}` }}>
         <div style={{ fontSize: '9px', letterSpacing: '0.3em', color: COLORS.gold, textTransform: 'uppercase', marginBottom: '32px' }}>Pricing</div>
         <h1 style={{ fontFamily: "'Unbounded', sans-serif", fontSize: 'clamp(32px, 5vw, 60px)', fontWeight: 200, letterSpacing: '0.04em', lineHeight: 1.1, marginBottom: '20px', maxWidth: '900px' }}>One system for every stage of your career.</h1>
-        <p style={{ fontSize: '13px', color: COLORS.textDim, lineHeight: '1.8', maxWidth: '640px', letterSpacing: '0.04em', marginBottom: '40px' }}>All tiers include Tour Lab, Broadcast Lab, Set Lab, SONIX Lab, and Drop Lab. No hidden fees. No feature gates.</p>
+        <p style={{ fontSize: '13px', color: COLORS.textDim, lineHeight: '1.8', maxWidth: '640px', letterSpacing: '0.04em', marginBottom: '40px' }}>All tiers include Tour Lab, Broadcast Lab, Set Lab, SONIX Lab, and Drop Lab.</p>
       </section>
 
       {/* PRICING TIERS */}
