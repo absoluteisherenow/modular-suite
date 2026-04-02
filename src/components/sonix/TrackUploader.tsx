@@ -118,7 +118,7 @@ Return JSON:
     <div style={{ background: s.bg, fontFamily: s.font, color: s.text, padding: '28px', borderTop: `1px solid ${s.border}`, marginTop: '24px' }}>
       <div style={{ fontSize: '9px', letterSpacing: '0.25em', color: s.gold, textTransform: 'uppercase', marginBottom: '20px', display: 'flex', alignItems: 'center', gap: '12px' }}>
         <span style={{ display: 'block', width: '20px', height: '1px', background: s.gold }} />
-        Track analyser — upload for instant AI analysis
+        Track analyser — upload for instant intelligent analysis
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '16px' }}>

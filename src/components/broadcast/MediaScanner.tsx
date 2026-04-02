@@ -207,7 +207,7 @@ Return JSON:
           Media <span style={{ fontStyle: 'italic', color: s.gold, fontFamily: 'Georgia, serif' }}>scanner</span>
         </div>
         <div style={{ fontSize: '12px', color: s.textDim, marginTop: '8px', letterSpacing: '0.06em' }}>
-          Upload a show clip — AI finds the best moments, energy peaks, and optimal cuts for each platform
+          Upload a show clip — intelligent analysis finds the best moments, energy peaks, and optimal cuts for each platform
         </div>
       </div>
 

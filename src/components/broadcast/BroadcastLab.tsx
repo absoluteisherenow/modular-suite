@@ -285,7 +285,7 @@ export function BroadcastLab() {
   function useTrend(trendContext: string) {
     setContext(trendContext)
     setTimeout(generateCaptions, 300)
-    showToast('Trend applied — generating captions', 'AI')
+    showToast('Trend applied — generating captions', 'info')
   }
 
   function formatScore(score: number) {
@@ -450,7 +450,7 @@ export function BroadcastLab() {
       {/* CAPTION GENERATOR */}
       <div className="bg-[#0e0d0b] border border-white/7 p-8 caption-panel">
         <div className="flex items-center gap-2 mb-5 text-[8.5px] tracking-[.22em] uppercase text-[#b08d57]">
-          Caption generator — real AI, tuned to your voice<div className="flex-1 h-px bg-white/10" />
+          Caption generator — intelligent, tuned to your voice<div className="flex-1 h-px bg-white/10" />
         </div>
         <div className="grid grid-cols-3 gap-3 mb-5">
           <div>

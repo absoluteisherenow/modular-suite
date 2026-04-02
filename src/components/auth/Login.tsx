@@ -57,7 +57,7 @@ export default function Login() {
           NIGHT MANOEUVRES
         </div>
         <div style={{ fontSize: '8px', letterSpacing: '0.3em', color: s.dimmer, textTransform: 'uppercase' }}>
-          The Modular Suite
+          Signal Lab OS | Tailored Artist OS
         </div>
       </div>
 

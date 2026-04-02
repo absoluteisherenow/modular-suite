@@ -1,6 +1,7 @@
 'use client'
-import { TrackUploader } from './TrackUploader'
 
+import { TrackUploader } from './TrackUploader'
+import { downloadArrangementMidi } from '@/lib/generateArrangementMidi'
 import { useState, useEffect, useRef } from 'react'
 
 async function callClaude(system: string, userPrompt: string, maxTokens = 800): Promise<string> {
@@ -91,6 +92,7 @@ export function SonixLab() {
   const [referenceTrack, setReferenceTrack] = useState('')
   const [arrangeResult, setArrangeResult] = useState('')
   const [energyArc, setEnergyArc] = useState<number[]>([])
+  const [arrangeSections, setArrangeSections] = useState<any[]>([])
   const [generatingArrange, setGeneratingArrange] = useState(false)
 
   // MIXDOWN state
@@ -217,6 +219,7 @@ Energy is 1-10. Include: Intro, Build, Drop, Breakdown, Build 2, Drop 2, Outro a
       setArrangeResult(raw)
       if (data.sections) {
         setEnergyArc(data.sections.map((s: any) => s.energy))
+        setArrangeSections(data.sections)
       }
     } catch (err: any) {
       try {
@@ -347,7 +350,7 @@ Give me:
         </div>
 
         <div style={{ fontSize: '10px', letterSpacing: '0.15em', color: '#3a2e20' }}>
-          SIGNAL LAB — THE MODULAR SUITE
+          SIGNAL LAB OS | TAILORED ARTIST OS
         </div>
       </div>
 
@@ -581,6 +584,28 @@ Give me:
                     </div>
                   ))}
                 </div>
+                {arrangeSections.length > 0 && (
+                  <button onClick={() => downloadArrangementMidi(arrangeSections, 128, 'arrangement-map.mid')} style={{
+                    marginTop: '16px',
+                    background: 'linear-gradient(180deg, #3a2e1c 0%, #2a200e 100%)',
+                    border: '1px solid #c9a46e',
+                    color: '#c9a46e',
+                    fontFamily: "'DM Mono', monospace",
+                    fontSize: '11px',
+                    letterSpacing: '0.2em',
+                    textTransform: 'uppercase',
+                    padding: '12px 28px',
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '10px',
+                    boxShadow: '0 0 12px rgba(201,164,110,0.15)',
+                    width: '100%',
+                    justifyContent: 'center',
+                  }}>
+                    ↓ Download arrangement MIDI — drag into your DAW
+                  </button>
+                )}
               </div>
             )}
 
