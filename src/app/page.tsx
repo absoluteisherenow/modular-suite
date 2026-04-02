@@ -69,7 +69,7 @@ const labs = [
 
 const features = [
   { title: 'Contract parser', desc: 'Paste a booking email. Intelligent extraction pulls venue, times, hotel, backline, fee, deposits — creates the gig in one click.' },
-  { title: 'Content scoring', desc: 'Drop a clip. Four scores back: Reach, Authenticity, Culture, Visual Identity. Know exactly where it lands before you post it.' },
+  { title: 'Content Intelligence', desc: 'Drop your footage. Four scores back — Reach, Authenticity, Culture, Visual Identity. Surfaces the strongest clips so you know exactly what to post.' },
   { title: 'Track intelligence', desc: 'Every track gets energy scoring, flow compatibility analysis, and mix-in data mapped against your full library.' },
   { title: 'Tone profiles', desc: 'Scan your favourite artists\' posting styles. Intelligent tone matching learns the voice and generates captions that sound like you, not a brand.' },
   { title: 'Rekordbox sync', desc: 'Import your full Rekordbox library. Intelligent enrichment scores every track. Export sets back as Rekordbox XML playlists.' },
