@@ -43,7 +43,7 @@ const TIERS = [
       'Everything in Creator',
       'SONIX Lab — Max for Live plugin',
       'Broadcast Lab — unlimited captions',
-      'Set Lab — Mix Scanner + track analysis',
+      'Set Lab — track analysis + Rekordbox sync',
       'Drop Lab — campaign builder',
       'Contract parser + invoice tracking',
       'Rekordbox import + export',

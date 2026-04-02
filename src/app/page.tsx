@@ -51,7 +51,6 @@ const plans = [
       'Advanced content scoring',
       'Producer chain database',
       'Audio file analysis (BPM, key, energy)',
-      'Mix Scanner — full tracklist detection',
       'Stems analysis',
       'Dedicated support',
     ],
@@ -61,7 +60,7 @@ const plans = [
 const labs = [
   { name: 'Tour Lab', role: 'Gigs, contracts, finances, advancing. The business side — handled.', color: '#b08d57', action: 'Run the business' },
   { name: 'Broadcast Lab', role: 'Content intelligence, captions tuned to your voice, scheduling, trend detection, media scanning.', color: '#3d6b4a', action: 'Own the narrative' },
-  { name: 'Set Lab', role: 'Track library, set building, mix scanner, Rekordbox sync, energy + flow scoring.', color: '#9a6a5a', action: 'Prepare the set' },
+  { name: 'Set Lab', role: 'Track library, set building, Rekordbox sync, energy + flow scoring.', color: '#9a6a5a', action: 'Prepare the set' },
   { name: 'SONIX Lab', role: 'Mix chain analysis, production workflow, frequency and structure data, VST plugin.', color: '#6a7a9a', action: 'Production analysis' },
   { name: 'Drop Lab', role: 'Release management, campaign timelines, streaming links, promo coordination.', color: '#7a5a8a', action: 'Ship the music' },
 ]
@@ -70,7 +69,6 @@ const features = [
   { title: 'Contract parser', desc: 'Paste a booking email. Intelligent extraction pulls venue, times, hotel, backline, fee, deposits — creates the gig in one click.' },
   { title: 'Content intelligence', desc: 'Drop a show clip. Intelligent analysis finds the best 15 seconds, scores engagement potential, suggests platform-specific cuts.' },
   { title: 'Track intelligence', desc: 'Every track gets energy scoring, flow compatibility analysis, and mix-in data mapped against your full library.' },
-  { title: 'Mix Scanner', desc: 'Upload a recorded DJ mix. Automatic track detection, transition analysis, energy arc breakdown, and flow scoring out of 10.' },
   { title: 'Tone profiles', desc: 'Scan your favourite artists\' posting styles. Intelligent tone matching learns the voice and generates captions that sound like you, not a brand.' },
   { title: 'Rekordbox sync', desc: 'Import your full Rekordbox library. Intelligent enrichment scores every track. Export sets back as Rekordbox XML playlists.' },
 ]
